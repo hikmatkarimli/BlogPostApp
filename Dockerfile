@@ -29,12 +29,11 @@ COPY . .
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy entrypoint script into container
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN npm install --global cross-env
+RUN npm install
 
 # Expose port 80
 EXPOSE 80
 
 # Set entrypoint
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["docker/entrypoint.sh"]
