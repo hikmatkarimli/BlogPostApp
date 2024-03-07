@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     zip \
     unzip \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
