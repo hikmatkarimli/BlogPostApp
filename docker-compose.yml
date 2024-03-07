@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    image: php:8.2.12-fpm
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - laravel_network
+    ports:
+      - "8000:80"  # Map container port 80 to host port 8000
+    depends_on:
+      - db
+      - redis
+    environment:
+      - "DB_CONNECTION=pgsql"
+      - "DB_PASSWORD=bUEtSWNCryqViLhR"
+      - "DATABASE_URL=postgres://postgres.nkkzvktbqcfmfdwihwze:bUEtSWNCryqViLhR@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+      - "REDIS_HOST=redis"
+      - "REDIS_PASSWORD=0eVw3pqqg7957TijydUjnb5D0RqavoqK"
+      - "REDIS_PORT=6379"
+      - "CACHE_DRIVER=redis"
+      - "MAIL_MAILER=smtp"
+      - "MAIL_HOST=sandbox.smtp.mailtrap.io"
+      - "MAIL_PORT=2525"
+      - "MAIL_USERNAME=3c2bfac3870ea7"
+      - "MAIL_PASSWORD=ec92a6a745d2fd"
+      - "MAIL_FROM_ADDRESS=null"
+      - "MAIL_FROM_NAME=BlogPostApp"
+
+  db:
+    image: postgres:latest
+    networks:
+      - laravel_network
+    environment:
+      - "POSTGRES_DB=postgres"
+      - "POSTGRES_USER=postgres.nkkzvktbqcfmfdwihwze"
+      - "POSTGRES_PASSWORD=bUEtSWNCryqViLhR"
+
+  redis:
+    image: redis:latest
+    networks:
+      - laravel_network
+    command: redis-server --requirepass 0eVw3pqqg7957TijydUjnb5D0RqavoqK
+
+networks:
+  laravel_network:

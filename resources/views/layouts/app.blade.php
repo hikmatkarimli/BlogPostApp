@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <title>Blog Post App - @yield('title')</title>
+    <title>BlogPostApp - @yield('title')</title>
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
