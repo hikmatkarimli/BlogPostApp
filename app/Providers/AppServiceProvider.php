@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\Http\ViewComposers\ActivityComposer;
@@ -30,10 +31,15 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
+     * @param UrlGenerator $url
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
+
         Schema::defaultStringLength(191);
         Blade::aliasComponent('components.badge', 'badge');
         Blade::aliasComponent('components.updated', 'updated');
