@@ -6,13 +6,13 @@ WORKDIR /var/www/html
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+  libpng-dev \
+  libjpeg-dev \
+  libfreetype6-dev \
+  zip \
+  unzip \
+  libpq-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js and npm
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
@@ -23,7 +23,7 @@ RUN a2enmod rewrite
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_pgsql
+  && docker-php-ext-install gd pdo pdo_pgsql
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -31,8 +31,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy the Laravel application files to the container
 COPY . .
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# No need for explicit storage directory creation (Laravel likely handles it)
+# Removed the previous chown command that might have caused issues
 
 # Install cross-env globally
 RUN npm install --global cross-env

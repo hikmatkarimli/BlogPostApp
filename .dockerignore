@@ -1,0 +1,33 @@
+# Git files
+.git*
+
+# Vendor directory
+vendor/
+
+# Node.js modules (if applicable)
+node_modules/
+
+# Environment variables (security recommendation)
+.env*  
+# This will ignore all files starting with ".env"
+
+# Application storage and cache (regenerated on startup)
+storage/
+bootstrap/cache/*
+
+# PHPUnit, other testing files (if not needed in production)
+phpunit.xml
+tests/*
+*.test.php
+
+# Node.js modules and npm cache (since you use npm install)
+node_modules/
+npm-cache/*
+
+# Additional ignores (modify as needed)
+public/test.php  
+# Example of ignoring a specific test file
+
+# IDE and configuration files
+.idea/*
+*.config.js
