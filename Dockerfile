@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
+
 # Enable Apache modules
 RUN a2enmod rewrite
 
@@ -30,6 +34,7 @@ COPY . .
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Install cross-env globally
 RUN npm install --global cross-env
 RUN npm install
 
