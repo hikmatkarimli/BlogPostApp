@@ -1,13 +1,12 @@
-#!/usr/bin/env bash
-echo "Running composer"
-composer global require hirak/prestissimo
-composer install --no-dev --working-dir=/var/www/html
+#!/bin/bash
 
-echo "Caching config..."
-php artisan config:cache
+# Install PHP dependencies using Composer
+composer install
 
-echo "Caching routes..."
-php artisan route:cache
+# Run database migrations (if needed)
+php artisan migrate
 
-echo "Running migrations..."
-php artisan migrate --force
+# Run additional setup commands if necessary
+
+# Start Apache server
+apache2-foreground

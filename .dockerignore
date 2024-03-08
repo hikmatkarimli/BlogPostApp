@@ -26,14 +26,6 @@ npm-cache/*
 
 # Additional ignores (modify as needed)
 public/test.php  
-/public/hot
-/public/storage
-/storage/*.key
-.phpunit.result.cache
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
 # Example of ignoring a specific test file
 
 # IDE and configuration files
